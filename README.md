@@ -12,3 +12,10 @@ Instructions on how to reproduce the failures:
 6. Make sure your simulator is on device running 14.0.1 (this should not be iOS specific, but this test case is working 100% of the times) (I am using iPhone 11 Pro with iOS 14.0.1) 
 7. run the tests named "FeatureTests" - this stage will run the UI tests using the "Snapshot" framework. tests will must likely fail. in the diff file ("FailureDiffs") ![Screen Shot 2021-11-29 at 14 55 39](https://user-images.githubusercontent.com/56236821/143871921-86bb1b5a-b099-436f-a04e-41a3758945de.png)
 
+8. Check the failure diff inside the folder, and the diff will look like this:
+![Screen Shot 2021-11-29 at 14 57 38](https://user-images.githubusercontent.com/56236821/143872171-7afb34b4-2487-4efb-95b2-f414d6aa1a92.png)
+
+This actually means that the Snapshot framework is trying to compare between a screen it expects to find 
+![testSnapshot@3x](https://user-images.githubusercontent.com/56236821/143872440-dca827ee-2220-4153-927c-eb461abc8c81.png)
+vs what it actually finds (this is due to Texture framework integration - once the Texture framework is removed from within the "Core" frameworks list {stage 4} the issue is gone)
+![failed_testSnapshot@3x](https://user-images.githubusercontent.com/56236821/143872584-a990e4ec-88fc-4aa6-82ee-aa44d5d73bf3.png)
