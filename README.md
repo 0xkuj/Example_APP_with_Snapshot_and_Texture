@@ -26,3 +26,8 @@ This actually means that the Snapshot framework is trying to compare between a s
 vs what it actually finds (this is due to Texture framework integration - once the Texture framework is removed from within the "Core" frameworks list {stage 4} the issue is gone)
 ![failed_testSnapshot@3x](https://user-images.githubusercontent.com/56236821/143872584-a990e4ec-88fc-4aa6-82ee-aa44d5d73bf3.png)
 
+
+Consider - Suggested solution:
+We found that moving the initialization of allowsGroupOpacityFromUIKitOrNil and allowsEdgeAntialiasingFromUIKitOrNil from 
+"ASInitializeFrameworkMainThread(void)" to their respective functions before being used (in this one and only time) (BOOL ASDefaultAllowsGroupOpacity() and BOOL ASDefaultAllowsEdgeAntialiasing()) will solve this issue.
+![Screen Shot 2021-11-29 at 15 15 01](https://user-images.githubusercontent.com/56236821/143874564-cb7b50dd-fc32-4cc2-bdcd-45f6d51ad1c3.png)
